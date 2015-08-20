@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>Shop Admin </title>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="css/bootstrap.min.css">
+		<script src="js/lib/jquery-2.1.4.min.js"></script>
+		<script src="js/lib/bootstrap.min.js"></script>
+	</head>
+
+	<body>
+
+		<nav class="navbar navbar-default">
+			<div class="container">
+				<!-- Brand and toggle get grouped for better mobile display -->
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+						<span class="sr-only">Toggle navigation</span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+					<a class="navbar-brand" href="#"> <span class="glyphicon glyphicon-home"></span> #ShopAdmin</a>
+				</div>
+
+				<!-- Collect the nav links, forms, and other content for toggling -->
+				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+					<ul class="nav navbar-nav">
+						<li class="active">
+							<a href="#"><span class="glyphicon glyphicon-user"></span>Customers </a>
+						</li>
+						<li>
+							<a href="#"><span class="glyphicon glyphicon-star"></span>Products</a>
+						</li>
+					</ul>
+				</div><!-- /.navbar-collapse -->
+			</div><!-- /.container-fluid -->
+		</nav>
+		<div class="container">
+			<div class="page-header">
+				<h2><span class="glyphicon glyphicon-user"></span> Customers: </h2>
+			</div>
+			<div class="panel panel-default">
+				<div class="panel-body">
+					<form class="form-inline">
+						<div class="form-group">
+							<input type="text" class="form-control" id="FirstName" placeholder="First Name">
+							<input type="text" class="form-control" id="SecondName" placeholder="Second Name">
+						</div>
+						
+							<button type="submit" class="btn btn-default">
+							<span class="glyphicon glyphicon-plus"></span> Add
+						</button>
+					</form>
+				</div>
+			</div>
+			
+			<table class="table table-hover">
+			<thead>
+				<tr>
+					<th>id</th>
+					<th>First Name</th>
+					<th>Last Name</th>
+					<th>Shopping Cart</th>
+					<th>Cheque</th>
+					<th>Actions</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<th>1</th>
+					<th>Volodymyr</th>
+					<th>Pish</th>
+					<th><a href=""><span class="glyphicon glyphicon-shopping-cart"></span>8 products</a></th>
+					<th>230 $</th>
+					<th>
+						<button class="btn btn-default btn-xs"><span class="glyphicon glyphicon-pencil"></span> Edit</button>
+						<button class="btn btn-default btn-xs"><span class="glyphicon glyphicon-trash"></span> Remove</button>
+					</th>
+				</tr>
+				<tr>
+					<th>2</th>
+					<th>Stepan </th>
+					<th>Sobaka</th>
+					<th><a href=""><span class="glyphicon glyphicon-shopping-cart"></span>17 products</a></th>
+					<th>40 $</th>
+					<th>
+						<button class="btn btn-default btn-xs"><span class="glyphicon glyphicon-pencil"></span> Edit</button>
+						<button class="btn btn-default btn-xs"><span class="glyphicon glyphicon-trash"></span> Remove</button>
+					</th>
+				</tr>
+				<tr>
+					<th>3</th>
+					<th><input type="text" class="form-control input-sm" value="Oleg"></th>
+					<th><input type="text" class="form-control input-sm" value="Kaban"></th>
+					<th><a href=""><span class="glyphicon glyphicon-shopping-cart"></span>12 products</a></th>
+					<th>125 $</th>
+					<th>
+						<button class="btn btn-default btn-xs"><span class="glyphicon glyphicon-ok"></span> Save</button>
+						<button class="btn btn-default btn-xs"><span class="glyphicon glyphicon-remove"></span> Cancel</button>
+					</th>
+				</tr>
+			</tbody>
+			</table>
+			
+		</div>
+	</body>
+
+</html>
