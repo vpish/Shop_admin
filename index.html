@@ -9,7 +9,7 @@
 	</head>
 
 	<body>
-
+	<!-- ------------Menu ------------------->
 		<nav class="navbar navbar-default">
 			<div class="container">
 				<!-- Brand and toggle get grouped for better mobile display -->
@@ -33,8 +33,8 @@
 							<a href="#"><span class="glyphicon glyphicon-star"></span>Products</a>
 						</li>
 					</ul>
-				</div><!-- /.navbar-collapse -->
-			</div><!-- /.container-fluid -->
+				</div>
+			</div>
 		</nav>
 
 		<!-- ------------Customers ------------------->
@@ -167,6 +167,7 @@
 				</button>
 				</form>
 			</div>
+			</div>
 
 			<table class="table table-hover">
 				<thead>
@@ -181,9 +182,9 @@
 				<tbody>
 					<tr>
 						<th>1</th>
-						<th>Nikon 3100</th>
-						<th>photo-camera</th>
-						<th>195</th>
+						<th>Nikon D3100</th>
+						<th><span class="glyphicon glyphicon-camera"></span> photo-camera</th>
+						<th>195 $</th>
 						<th>
 						<button class="btn btn-default btn-xs">
 							<span class="glyphicon glyphicon-pencil"></span> Edit
@@ -195,8 +196,8 @@
 					<tr>
 						<th>2</th>
 						<th>Sony xperia M2005 </th>
-						<th>phone</th>
-						<th>140$</th>
+						<th><span class="glyphicon glyphicon-phone"></span> phone</th>
+						<th>140 $</th>
 						<th>
 						<button class="btn btn-default btn-xs">
 							<span class="glyphicon glyphicon-pencil"></span> Edit
@@ -251,7 +252,150 @@
 		</div>
 
 		<!-- ------------Shopping Cart ------------------->
+		<div class="container">
+			<div class="page-header">
+				 <h2><span class="glyphicon glyphicon-briefcase "></span> Shopping Cart:  <small> Volodymyr Pish</small> </h2>
+			</div>
+			
+			<div class="panel panel-default">
+				<div class="panel-body">
+					<form class="form-inline">
+						<div class="form-group">
+							<div class="dropdown">
+								<button class="btn btn-default dropdown-toggle" type="button" id="product" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+									Nikon D3100 <span class=" glyphicon glyphicon-camera"> </span>  photo-camera
+									<span class="caret"></span>
+								</button>
+								<ul class="dropdown-menu" aria-labelledby="product_category">
+									<li>
+										<a href="#"><span class="glyphicon glyphicon-camera"> </span>  photo-camera</a>
+									</li>
+									<li>
+										<a href="#"><span class="glyphicon glyphicon-facetime-video"> </span>   video-camera</a>
+									</li>
+									<li>
+										<a href="#"><span class="glyphicon glyphicon-phone"></span>   phone</a>
+									</li>
+									<li>
+										<a href="#"><span class="glyphicon glyphicon-sunglasses"></span>  sunglasses</a>
+									</li>
+								</ul>
+							</div>
+						</div>
 
+				<div class="form-group">	
+				  <label id="Label1">Price: 150  $</label>
+				</div>
+
+				<div class="input-group">
+					<input type="text" class="form-control" id="Amount" placeholder="Amount">
+				</div>
+				<div class="form-group">	
+					 <label id="Label2">Total: 150  $</label>
+				</div>
+
+				<button type="submit" class="btn btn-default">
+					<span class="glyphicon glyphicon-plus"></span> Add
+				</button>
+				
+				</form>
+			</div>
+			</div>
+			
+			<table class="table table-hover">
+				<thead>
+					<tr>
+						<th>id</th>
+						<th>Product</th>
+						<th>Price</th>
+						<th>Amount</th>
+						<th>Total</th>
+						<th>Actions</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<th>1</th>
+						<th>Samsung S5 <span class="glyphicon glyphicon-phone"></span>  phone</th>
+						<th>450 $</th>
+						<th>2</th>
+						<th>900 $</th>
+						<th>
+						<button class="btn btn-default btn-xs">
+							<span class="glyphicon glyphicon-pencil"></span> Edit
+						</button>
+						<button class="btn btn-default btn-xs">
+							<span class="glyphicon glyphicon-trash"></span> Remove
+						</button></th>
+					</tr>
+					<tr>
+						<th>2</th>
+						<th>HTC Desire 210 <span class="glyphicon glyphicon-phone"></span>  phone</th>
+						<th>220 $</th>
+						<th>1</th>
+						<th>220 $</th>
+						<th>
+						<button class="btn btn-default btn-xs">
+							<span class="glyphicon glyphicon-pencil"></span> Edit
+						</button>
+						<button class="btn btn-default btn-xs">
+							<span class="glyphicon glyphicon-trash"></span> Remove
+						</button></th>
+					</tr>
+					<tr>
+						<th>3</th>
+						<th>
+						<div class="form-group">
+							<div class="dropdown">
+								<button class="btn btn-default dropdown-toggle" type="button" id="product" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+									Nikon D3100 <span class=" glyphicon glyphicon-camera"> </span>  photo-camera
+									<span class="caret"></span>
+								</button>
+								<ul class="dropdown-menu" aria-labelledby="product_category">
+									<li>
+										<a href="#"><span class="glyphicon glyphicon-camera"> </span>  photo-camera</a>
+									</li>
+									<li>
+										<a href="#"><span class="glyphicon glyphicon-facetime-video"> </span>   video-camera</a>
+									</li>
+									<li>
+										<a href="#"><span class="glyphicon glyphicon-phone"></span>   phone</a>
+									</li>
+									<li>
+										<a href="#"><span class="glyphicon glyphicon-sunglasses"></span>  sunglasses</a>
+									</li>
+								</ul>
+							</div>
+						</div>
+						</th>
+						<th><input type="text" class="form-control input-sm" value="150 $"></th>
+						<th><input type="text" class="form-control input-sm" value="1"></th>
+						<th>150 $</th>
+						<th>
+						<button class="btn btn-default btn-xs">
+							<span class="glyphicon glyphicon-ok"></span> Save
+						</button>
+						<button class="btn btn-default btn-xs">
+							<span class="glyphicon glyphicon-remove"></span> Cancel
+						</button></th>
+					</tr>
+				</tbody>
+			</table>
+			
+			<div class="panel panel-default">
+				<div class="panel-body">
+					<form class="form-inline">
+						<div class="form-group">
+						 	<label id="Label3-right">Altogether: 1120  $</label>
+						</div>		
+				</form>
+			</div>
+			</div>
+			
+			
+		</div>
+
+	<!-- ------------End ------------------->
 	</body>
 
 </html>
