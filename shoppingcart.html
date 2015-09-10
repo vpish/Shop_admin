@@ -1,0 +1,139 @@
+<div class="page-header">
+	<h3><span class="glyphicon glyphicon-briefcase "></span> Shopping Cart: <small> Volodymyr Pish</small></h3>
+</div>
+
+<div class="panel panel-default">
+	<div class="panel-body">
+		<form class="form-inline">
+			<div class="form-group">
+				<div class="dropdown">
+					<button class="btn btn-default dropdown-toggle" type="button" id="product" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+						Nikon D3100  <span class="caret"></span>
+					</button>
+					<ul class="dropdown-menu" aria-labelledby="product_category">
+						<li>
+							<a href="#"> Samsung S5</a>
+						</li>
+						<li>
+							<a href="#">HTC Desire 210</a>
+						</li>
+						<li>
+							<a href="#"> Sven G250</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+			<div class="form-group">
+				<span class=" glyphicon glyphicon-camera"> </span> {{"photo-camera"}}
+			</div>
+			<div class="form-group">
+				<h5><b>Price:</b> {{150 | currency }}</h5>
+			</div>
+
+			<div class="input-group">
+				<input type="text" class="form-control" id="Amount" placeholder="Amount">
+			</div>
+			<div class="form-group">
+				<h5><b>Total:</b> {{150 | currency }}</h5>
+			</div>
+
+			<button type="submit" class="btn btn-default">
+				<span class="glyphicon glyphicon-plus"></span> Add
+			</button>
+
+		</form>
+	</div>
+</div>
+
+<table class="table table-hover">
+	<thead>
+		<tr>
+			<th>id</th>
+			<th>Product</th>
+			<th>Category</th>
+			<th>Price</th>
+			<th>Amount</th>
+			<th>Total</th>
+			<th>Actions</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<th>1</th>
+			<th>Samsung S5 </th>
+			<th><span class="glyphicon glyphicon-phone"></span>phone</th>
+			<th>{{450 | currency }}</th>
+			<th>2</th>
+			<th>{{900 | currency }}</th>
+			<th>
+			<button class="btn btn-default btn-xs">
+				<span class="glyphicon glyphicon-pencil"></span> Edit
+			</button>
+			<button class="btn btn-default btn-xs">
+				<span class="glyphicon glyphicon-trash"></span> Remove
+			</button></th>
+		</tr>
+		<tr>
+			<th>2</th>
+			<th>HTC Desire 210 </th>
+			<th><span class="glyphicon glyphicon-phone"></span> phone</th>
+			<th>{{220 | currency }}</th>
+			<th>1</th>
+			<th>{{220 | currency }}</th>
+			<th>
+			<button class="btn btn-default btn-xs">
+				<span class="glyphicon glyphicon-pencil"></span> Edit
+			</button>
+			<button class="btn btn-default btn-xs">
+				<span class="glyphicon glyphicon-trash"></span> Remove
+			</button></th>
+		</tr>
+		<tr>
+			<th>3</th>
+			<th>
+			
+			<div class="form-group">
+				<div class="dropdown">
+					<button class="btn btn-default dropdown-toggle" type="button" id="product" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+						Nikon D3100 <span class="caret"></span>
+					</button>
+					<ul class="dropdown-menu" aria-labelledby="product_category">
+						<li>
+							<a href="#">Samsung S5</a>
+						</li>
+						<li>
+							<a href="#">HTC Desire 210</a>
+						</li>
+						<li>
+							<a href="#">Sven G250</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+			<th>
+				<span class=" glyphicon glyphicon-camera"> </span> {{"photo-camera"}}
+			</th>
+			</th>
+			<th>
+			<input type="text" class="form-control input-sm" value="150">
+			</th>
+			<th>
+			<input type="text" class="form-control input-sm" value="1">
+			</th>
+			<th>{{150 | currency }}</th>
+			<th>
+			<button class="btn btn-default btn-xs">
+				<span class="glyphicon glyphicon-ok"></span> Save
+			</button>
+			<button class="btn btn-default btn-xs">
+				<span class="glyphicon glyphicon-remove"></span> Cancel
+			</button></th>
+		</tr>
+	</tbody>
+</table>
+
+<div class="panel panel-default">
+	<div class="panel-body">
+		<h4 class="text-right"><b >Altogether:</b> {{1120 | currency }} </h4>
+	</div>
+</div>

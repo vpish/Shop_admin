@@ -1,0 +1,125 @@
+<div class="page-header">
+	<h3><span class="glyphicon glyphicon-star"></span> Products: </h3>
+</div>
+<div class="panel panel-default">
+	<div class="panel-body">
+		<form class="form-inline">
+			<div class="form-group">
+				<input type="text" class="form-control"  placeholder="Product Name">
+			</div>
+			<div class="form-group">
+				<h5><b>Category:</b></h5>
+			</div>
+			<div class="form-group">
+				<div class="dropdown">
+					<button class="btn btn-default dropdown-toggle" type="button" id="product_category" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+				 <span class=" glyphicon glyphicon-headphones"> </span> headphones <span class="caret"></span>
+					</button>
+					<ul class="dropdown-menu" aria-labelledby="product_category">
+						<li>
+							<a href="#"><span class="glyphicon glyphicon-camera"> </span> photo-camera</a>
+						</li>
+						<li>
+							<a href="#"><span class="glyphicon glyphicon-facetime-video"> </span> video-camera</a>
+						</li>
+						<li>
+							<a href="#"><span class="glyphicon glyphicon-phone"></span> phone</a>
+						</li>
+						<li>
+							<a href="#"><span class="glyphicon glyphicon-sunglasses"></span> sunglasses</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+
+			<div class="input-group">
+				<input type="text" class="form-control" id="price" placeholder="Price">
+				<div class="input-group-addon">
+					$
+				</div>
+			</div>
+
+			<button type="submit" class="btn btn-default">
+				<span class="glyphicon glyphicon-plus"></span> Add
+			</button>
+		</form>
+	</div>
+</div>
+
+<table class="table table-hover">
+	<thead>
+		<tr>
+			<th>id</th>
+			<th>Product Name</th>
+			<th>Category</th>
+			<th>Price</th>
+			<th>Actions</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<th>1</th>
+			<th>Nikon D3100</th>
+			<th><span class="glyphicon glyphicon-camera"></span> photo-camera</th>
+			<th>{{195 | currency }}</th>
+			<th>
+			<button class="btn btn-default btn-xs">
+				<span class="glyphicon glyphicon-pencil"></span> Edit
+			</button>
+			<button class="btn btn-default btn-xs">
+				<span class="glyphicon glyphicon-trash"></span> Remove
+			</button></th>
+		</tr>
+		<tr>
+			<th>2</th>
+			<th>Sony xperia M2005 </th>
+			<th><span class="glyphicon glyphicon-phone"></span> phone</th>
+			<th>{{140 | currency }}</th>
+			<th>
+			<button class="btn btn-default btn-xs">
+				<span class="glyphicon glyphicon-pencil"></span> Edit
+			</button>
+			<button class="btn btn-default btn-xs">
+				<span class="glyphicon glyphicon-trash"></span> Remove
+			</button></th>
+		</tr>
+		<tr>
+			<th>3</th>
+			<th>
+			<input type="text" class="form-control input-sm" value="Sven G250 ">
+			</th>
+			<th>
+			<div class="form-group">
+				<div class="dropdown">
+					<button class="btn btn-default dropdown-toggle input-sm"  type="button" id="product_category" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+						 <span class=" glyphicon glyphicon-headphones"> </span> headphones <span class="caret"></span>
+					</button>
+					<ul class="dropdown-menu" aria-labelledby="product_category">
+						<li>
+							<a href="#"><span class="glyphicon glyphicon-camera"> </span> photo-camera</a>
+						</li>
+						<li>
+							<a href="#"><span class="glyphicon glyphicon-facetime-video"> </span> video-camera</a>
+						</li>
+						<li>
+							<a href="#"><span class="glyphicon glyphicon-phone"></span> phone</a>
+						</li>
+						<li>
+							<a href="#"><span class="glyphicon glyphicon-sunglasses"></span> sunglasses</a>
+						</li>
+					</ul>
+				</div>
+			</div></th>
+			<th>
+			<input type="text" class="form-control input-sm" value="250">
+			</th>
+			<th>
+			<button class="btn btn-default btn-xs">
+				<span class="glyphicon glyphicon-ok"></span> Save
+			</button>
+			<button class="btn btn-default btn-xs">
+				<span class="glyphicon glyphicon-remove"></span> Cancel
+			</button></th>
+		</tr>
+	</tbody>
+</table>

@@ -1,16 +1,19 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app="ShopAdmin">
 	<head>
 		<title>Shop Admin </title>
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="stylesheet" href="css/bootstrap.min.css">
 		<script src="js/lib/jquery-2.1.4.min.js"></script>
 		<script src="js/lib/bootstrap.min.js"></script>
+		<script src="js/lib/angular.min.js"></script>
+		<script src="js/lib/angular-route.min.js"></script>
+		<script src="js/app.js"></script>
 	</head>
 
-	<body>
+	<body ng-controller="AppController as app">
 	<!-- ------------Menu ------------------->
-		<nav class="navbar navbar-default">
+		<nav class="navbar navbar-default navbar-inverse" ng-init="tab=1">
 			<div class="container">
 				<!-- Brand and toggle get grouped for better mobile display -->
 				<div class="navbar-header">
@@ -20,381 +23,45 @@
 						<span class="icon-bar"></span>
 						<span class="icon-bar"></span>
 					</button>
-					<a class="navbar-brand" href="#"> <span class="glyphicon glyphicon-home"></span> #ShopAdmin</a>
+					<img alt="Brand" class="navbar-static-top" src="logo-shopadmin.png">
 				</div>
 
 				<!-- Collect the nav links, forms, and other content for toggling -->
 				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-					<ul class="nav navbar-nav">
-						<li class="active">
-							<a href="#"><span class="glyphicon glyphicon-user"></span>Customers </a>
+					<ul class="nav navbar-nav navbar-static-top">
+						<li ng-class="{active:tab===1}">
+							<a href="#" ng-click="tab=1"><span class="glyphicon glyphicon-user"></span> Customers </a>
 						</li>
-						<li>
-							<a href="#"><span class="glyphicon glyphicon-star"></span>Products</a>
+						<li ng-class="{active:tab===2}">
+							<a href="#" ng-click="tab=2"><span class="glyphicon glyphicon-star"></span> Products</a>
+						</li>
+						<li ng-class="{active:tab===3}">
+							<a href="#" ng-click="tab=3"> Shopping Cart</a>
 						</li>
 					</ul>
+					<ul class="nav navbar-nav navbar-right">
+						<li ng-class="{active:tab===4}">
+							<a href="#" ng-click="tab=4"><span class="glyphicon glyphicon-home"></span> Contacts</a>
+						</li>
+						<li >
+							<p class="navbar-text">10.09.2015</p>
+						</li>
+					</ul>
+					
 				</div>
 			</div>
 		</nav>
 
-		<!-- ------------Customers ------------------->
+		<!-- ------------Pages: ------------------->
 
-		<div class="container">
-			<div class="page-header">
-				<h2><span class="glyphicon glyphicon-user"></span> Customers: </h2>
-			</div>
-			<div class="panel panel-default">
-				<div class="panel-body">
-					<form class="form-inline">
-						<div class="form-group">
-							<input type="text" class="form-control" id="FirstName" placeholder="First Name">
-							<input type="text" class="form-control" id="SecondName" placeholder="Second Name">
-						</div>
-						<button type="submit" class="btn btn-default">
-							<span class="glyphicon glyphicon-plus"></span> Add
-						</button>
-					</form>
-				</div>
-			</div>
+		<div class="container" ng-show="tab===1"> <customers-page></customers-page>		</div>
 
-			<table class="table table-hover">
-				<thead>
-					<tr>
-						<th>id</th>
-						<th>First Name</th>
-						<th>Last Name</th>
-						<th>Shopping Cart</th>
-						<th>Cheque</th>
-						<th>Actions</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr>
-						<th>1</th>
-						<th>Volodymyr</th>
-						<th>Pish</th>
-						<th><a href=""><span class="glyphicon glyphicon-shopping-cart"></span>8 products</a></th>
-						<th>230 $</th>
-						<th>
-						<button class="btn btn-default btn-xs">
-							<span class="glyphicon glyphicon-pencil"></span> Edit
-						</button>
-						<button class="btn btn-default btn-xs">
-							<span class="glyphicon glyphicon-trash"></span> Remove
-						</button></th>
-					</tr>
-					<tr>
-						<th>2</th>
-						<th>Stepan </th>
-						<th>Sobaka</th>
-						<th><a href=""><span class="glyphicon glyphicon-shopping-cart"></span>17 products</a></th>
-						<th>40 $</th>
-						<th>
-						<button class="btn btn-default btn-xs">
-							<span class="glyphicon glyphicon-pencil"></span> Edit
-						</button>
-						<button class="btn btn-default btn-xs">
-							<span class="glyphicon glyphicon-trash"></span> Remove
-						</button></th>
-					</tr>
-					<tr>
-						<th>3</th>
-						<th>
-						<input type="text" class="form-control input-sm" value="Oleg">
-						</th>
-						<th>
-						<input type="text" class="form-control input-sm" value="Kaban">
-						</th>
-						<th><a href=""><span class="glyphicon glyphicon-shopping-cart"></span>12 products</a></th>
-						<th>125 $</th>
-						<th>
-						<button class="btn btn-default btn-xs">
-							<span class="glyphicon glyphicon-ok"></span> Save
-						</button>
-						<button class="btn btn-default btn-xs">
-							<span class="glyphicon glyphicon-remove"></span> Cancel
-						</button></th>
-					</tr>
-				</tbody>
-			</table>
+		<div class="container" ng-show="tab===2"> <products-page></products-page>		</div>
 
-		</div>
-
-		<!-- ------------Products ------------------->
-
-		<div class="container">
-			<div class="page-header">
-				<h2><span class="glyphicon glyphicon-star"></span> Products: </h2>
-			</div>
-			<div class="panel panel-default">
-				<div class="panel-body">
-					<form class="form-inline">
-						<div class="form-group">
-							<input type="text" class="form-control"  placeholder="Product Name">
-						</div>
-						<div class="form-group">
-							<div class="dropdown">
-								<button class="btn btn-default dropdown-toggle" type="button" id="product_category" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-									Category: <span class=" glyphicon glyphicon-headphones"> </span>  headphones
-									<span class="caret"></span>
-								</button>
-								<ul class="dropdown-menu" aria-labelledby="product_category">
-									<li>
-										<a href="#"><span class="glyphicon glyphicon-camera"> </span>  photo-camera</a>
-									</li>
-									<li>
-										<a href="#"><span class="glyphicon glyphicon-facetime-video"> </span>   video-camera</a>
-									</li>
-									<li>
-										<a href="#"><span class="glyphicon glyphicon-phone"></span>   phone</a>
-									</li>
-									<li>
-										<a href="#"><span class="glyphicon glyphicon-sunglasses"></span>  sunglasses</a>
-									</li>
-								</ul>
-							</div>
-						</div>
-
-						<div class="input-group">
-							<input type="text" class="form-control" id="price" placeholder="Price">
-							<div class="input-group-addon">
-								$
-							</div>
-						</div>
-
-				<button type="submit" class="btn btn-default">
-					<span class="glyphicon glyphicon-plus"></span> Add
-				</button>
-				</form>
-			</div>
-			</div>
-
-			<table class="table table-hover">
-				<thead>
-					<tr>
-						<th>id</th>
-						<th>Product Name</th>
-						<th>Category</th>
-						<th>Price</th>
-						<th>Actions</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr>
-						<th>1</th>
-						<th>Nikon D3100</th>
-						<th><span class="glyphicon glyphicon-camera"></span> photo-camera</th>
-						<th>195 $</th>
-						<th>
-						<button class="btn btn-default btn-xs">
-							<span class="glyphicon glyphicon-pencil"></span> Edit
-						</button>
-						<button class="btn btn-default btn-xs">
-							<span class="glyphicon glyphicon-trash"></span> Remove
-						</button></th>
-					</tr>
-					<tr>
-						<th>2</th>
-						<th>Sony xperia M2005 </th>
-						<th><span class="glyphicon glyphicon-phone"></span> phone</th>
-						<th>140 $</th>
-						<th>
-						<button class="btn btn-default btn-xs">
-							<span class="glyphicon glyphicon-pencil"></span> Edit
-						</button>
-						<button class="btn btn-default btn-xs">
-							<span class="glyphicon glyphicon-trash"></span> Remove
-						</button></th>
-					</tr>
-					<tr>
-						<th>3</th>
-						<th>
-						<input type="text" class="form-control input-sm" value="Sven G250 ">
-						</th>
-						<th>
-						<div class="form-group">
-							<div class="dropdown">
-								<button class="btn btn-default dropdown-toggle input-sm"  type="button" id="product_category" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-									Category: <span class=" glyphicon glyphicon-headphones"> </span>  headphones
-									<span class="caret"></span>
-								</button>
-								<ul class="dropdown-menu" aria-labelledby="product_category">
-									<li>
-										<a href="#"><span class="glyphicon glyphicon-camera"> </span>  photo-camera</a>
-									</li>
-									<li>
-										<a href="#"><span class="glyphicon glyphicon-facetime-video"> </span>   video-camera</a>
-									</li>
-									<li>
-										<a href="#"><span class="glyphicon glyphicon-phone"></span>   phone</a>
-									</li>
-									<li>
-										<a href="#"><span class="glyphicon glyphicon-sunglasses"></span>  sunglasses</a>
-									</li>
-								</ul>
-							</div>
-						</div>
-						</th>
-						<th>
-						<input type="text" class="form-control input-sm" value="250$">
-						</th>
-						<th>
-						<button class="btn btn-default btn-xs">
-							<span class="glyphicon glyphicon-ok"></span> Save
-						</button>
-						<button class="btn btn-default btn-xs">
-							<span class="glyphicon glyphicon-remove"></span> Cancel
-						</button></th>
-					</tr>
-				</tbody>
-			</table>
-
-		</div>
-
-		<!-- ------------Shopping Cart ------------------->
-		<div class="container">
-			<div class="page-header">
-				 <h2><span class="glyphicon glyphicon-briefcase "></span> Shopping Cart:  <small> Volodymyr Pish</small> </h2>
-			</div>
-			
-			<div class="panel panel-default">
-				<div class="panel-body">
-					<form class="form-inline">
-						<div class="form-group">
-							<div class="dropdown">
-								<button class="btn btn-default dropdown-toggle" type="button" id="product" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-									Nikon D3100 <span class=" glyphicon glyphicon-camera"> </span>  photo-camera
-									<span class="caret"></span>
-								</button>
-								<ul class="dropdown-menu" aria-labelledby="product_category">
-									<li>
-										<a href="#"><span class="glyphicon glyphicon-camera"> </span>  photo-camera</a>
-									</li>
-									<li>
-										<a href="#"><span class="glyphicon glyphicon-facetime-video"> </span>   video-camera</a>
-									</li>
-									<li>
-										<a href="#"><span class="glyphicon glyphicon-phone"></span>   phone</a>
-									</li>
-									<li>
-										<a href="#"><span class="glyphicon glyphicon-sunglasses"></span>  sunglasses</a>
-									</li>
-								</ul>
-							</div>
-						</div>
-
-				<div class="form-group">	
-				  <label id="Label1">Price: 150  $</label>
-				</div>
-
-				<div class="input-group">
-					<input type="text" class="form-control" id="Amount" placeholder="Amount">
-				</div>
-				<div class="form-group">	
-					 <label id="Label2">Total: 150  $</label>
-				</div>
-
-				<button type="submit" class="btn btn-default">
-					<span class="glyphicon glyphicon-plus"></span> Add
-				</button>
-				
-				</form>
-			</div>
-			</div>
-			
-			<table class="table table-hover">
-				<thead>
-					<tr>
-						<th>id</th>
-						<th>Product</th>
-						<th>Price</th>
-						<th>Amount</th>
-						<th>Total</th>
-						<th>Actions</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr>
-						<th>1</th>
-						<th>Samsung S5 <span class="glyphicon glyphicon-phone"></span>  phone</th>
-						<th>450 $</th>
-						<th>2</th>
-						<th>900 $</th>
-						<th>
-						<button class="btn btn-default btn-xs">
-							<span class="glyphicon glyphicon-pencil"></span> Edit
-						</button>
-						<button class="btn btn-default btn-xs">
-							<span class="glyphicon glyphicon-trash"></span> Remove
-						</button></th>
-					</tr>
-					<tr>
-						<th>2</th>
-						<th>HTC Desire 210 <span class="glyphicon glyphicon-phone"></span>  phone</th>
-						<th>220 $</th>
-						<th>1</th>
-						<th>220 $</th>
-						<th>
-						<button class="btn btn-default btn-xs">
-							<span class="glyphicon glyphicon-pencil"></span> Edit
-						</button>
-						<button class="btn btn-default btn-xs">
-							<span class="glyphicon glyphicon-trash"></span> Remove
-						</button></th>
-					</tr>
-					<tr>
-						<th>3</th>
-						<th>
-						<div class="form-group">
-							<div class="dropdown">
-								<button class="btn btn-default dropdown-toggle" type="button" id="product" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-									Nikon D3100 <span class=" glyphicon glyphicon-camera"> </span>  photo-camera
-									<span class="caret"></span>
-								</button>
-								<ul class="dropdown-menu" aria-labelledby="product_category">
-									<li>
-										<a href="#"><span class="glyphicon glyphicon-camera"> </span>  photo-camera</a>
-									</li>
-									<li>
-										<a href="#"><span class="glyphicon glyphicon-facetime-video"> </span>   video-camera</a>
-									</li>
-									<li>
-										<a href="#"><span class="glyphicon glyphicon-phone"></span>   phone</a>
-									</li>
-									<li>
-										<a href="#"><span class="glyphicon glyphicon-sunglasses"></span>  sunglasses</a>
-									</li>
-								</ul>
-							</div>
-						</div>
-						</th>
-						<th><input type="text" class="form-control input-sm" value="150 $"></th>
-						<th><input type="text" class="form-control input-sm" value="1"></th>
-						<th>150 $</th>
-						<th>
-						<button class="btn btn-default btn-xs">
-							<span class="glyphicon glyphicon-ok"></span> Save
-						</button>
-						<button class="btn btn-default btn-xs">
-							<span class="glyphicon glyphicon-remove"></span> Cancel
-						</button></th>
-					</tr>
-				</tbody>
-			</table>
-			
-			<div class="panel panel-default">
-				<div class="panel-body">
-					<form class="form-inline">
-						<div class="form-group">
-						 	<label id="Label3-right">Altogether: 1120  $</label>
-						</div>		
-				</form>
-			</div>
-			</div>
-			
-			
-		</div>
-
+		<div class="container" ng-show="tab===3"> <shoppingcart-page></shoppingcart-page>		</div>
+		
+		<div class="container" ng-show="tab===4"> <contacts-page></contacts-page>		</div>
+		
 	<!-- ------------End ------------------->
 	</body>
 

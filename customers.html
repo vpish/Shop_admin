@@ -1,0 +1,77 @@
+<div class="page-header">
+<h3><span class="glyphicon glyphicon-user"></span> Customers:  </h3>
+	</div>
+	<div class="panel panel-default">
+		<div class="panel-body">
+			<form class="form-inline">
+				<div class="form-group">
+					<input type="text" class="form-control" id="FirstName" placeholder="First Name">
+					<input type="text" class="form-control" id="SecondName" placeholder="Second Name">
+				</div>
+				<button type="submit" class="btn btn-default">
+					<span class="glyphicon glyphicon-plus"></span> Add
+				</button>
+			</form>
+		</div>
+	</div>
+
+<table class="table table-hover">
+	<thead>
+		<tr>
+			<th>id</th>
+			<th>First Name</th>
+			<th>Last Name</th>
+			<th>Shopping Cart</th>
+			<th>Cheque</th>
+			<th>Actions</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<th>1</th>
+			<th>Volodymyr</th>
+			<th>Pish</th>
+			<th><a href=""><span class="glyphicon glyphicon-shopping-cart"></span>8 products</a></th>
+			<th>{{230 | currency }}</th>
+			<th>
+			<button class="btn btn-default btn-xs">
+				<span class="glyphicon glyphicon-pencil"></span> Edit
+			</button>
+			<button class="btn btn-default btn-xs">
+				<span class="glyphicon glyphicon-trash"></span> Remove
+			</button></th>
+		</tr>
+		<tr>
+			<th>2</th>
+			<th>Stepan </th>
+			<th>Sobaka</th>
+			<th><a href=""><span class="glyphicon glyphicon-shopping-cart"></span>17 products</a></th>
+			<th>{{400 | currency }}</th>
+			<th>
+			<button class="btn btn-default btn-xs">
+				<span class="glyphicon glyphicon-pencil"></span> Edit
+			</button>
+			<button class="btn btn-default btn-xs">
+				<span class="glyphicon glyphicon-trash"></span> Remove
+			</button></th>
+		</tr>
+		<tr>
+			<th>3</th>
+			<th>
+			<input type="text" class="form-control input-sm" value="Oleg">
+			</th>
+			<th>
+			<input type="text" class="form-control input-sm" value="Kaban">
+			</th>
+			<th><a href=""><span class="glyphicon glyphicon-shopping-cart"></span>12 products</a></th>
+			<th>{{125 | currency }}</th>
+			<th>
+			<button class="btn btn-default btn-xs">
+				<span class="glyphicon glyphicon-ok"></span> Save
+			</button>
+			<button class="btn btn-default btn-xs">
+				<span class="glyphicon glyphicon-remove"></span> Cancel
+			</button></th>
+		</tr>
+	</tbody>
+</table>
