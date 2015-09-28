@@ -23,28 +23,32 @@
 						<span class="icon-bar"></span>
 						<span class="icon-bar"></span>
 					</button>
-					<img alt="Brand" class="navbar-static-top" src="logo-shopadmin.png">
+					<img alt="Brand" class=" img-rounded" src="pics/logo-shopadmin.png">
+				</div>
+				<div>
+					<a class="navbar-brand" href="#" ng-click="app.changePath('/')"> ShopAdmin</a>
+
 				</div>
 
 				<!-- Collect the nav links, forms, and other content for toggling -->
 				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-					<ul class="nav navbar-nav navbar-static-top">
-						<li ng-class="{active:tab===1}">
-							<a href="#" ng-click="tab=1"><span class="glyphicon glyphicon-user"></span> Customers </a>
+					<ul class="nav navbar-nav">
+						<li ng-class="{active: app.currentMenu=='customers'}">
+							<a href="#" ng-click="app.changePath('/customers')"><span class="glyphicon glyphicon-user"></span> Customers </a>
 						</li>
-						<li ng-class="{active:tab===2}">
-							<a href="#" ng-click="tab=2"><span class="glyphicon glyphicon-star"></span> Products</a>
+						<li ng-class="{active: app.currentMenu=='products'}">
+							<a href="#" ng-click="app.changePath('/products')" ><span class="glyphicon glyphicon-star"></span> Products</a>
 						</li>
-						<li ng-class="{active:tab===3}">
-							<a href="#" ng-click="tab=3"> Shopping Cart</a>
-						</li>
+					<li ng-show="app.currentMenu==='shoppingcart'" ng-class="{active: app.currentMenu=='shoppingcart'}">
+							<a href="#" > Shopping Cart</a>
+					</li> 
 					</ul>
 					<ul class="nav navbar-nav navbar-right">
-						<li ng-class="{active:tab===4}">
-							<a href="#" ng-click="tab=4"><span class="glyphicon glyphicon-home"></span> Contacts</a>
+						<li ng-class="{active: app.currentMenu=='contacts'}">
+							<a href="#" ng-click="app.changePath('/contacts')"><span class="glyphicon glyphicon-home"></span> Contacts</a>
 						</li>
 						<li >
-							<p class="navbar-text">10.09.2015</p>
+							<p class="navbar-text">28.09.2015</p>
 						</li>
 					</ul>
 					
@@ -53,15 +57,9 @@
 		</nav>
 
 		<!-- ------------Pages: ------------------->
-
-		<div class="container" ng-show="tab===1"> <customers-page></customers-page>		</div>
-
-		<div class="container" ng-show="tab===2"> <products-page></products-page>		</div>
-
-		<div class="container" ng-show="tab===3"> <shoppingcart-page></shoppingcart-page>		</div>
-		
-		<div class="container" ng-show="tab===4"> <contacts-page></contacts-page>		</div>
-		
+		<div class="container">
+			<ng-view></ng-view>
+		</div>
 	<!-- ------------End ------------------->
 	</body>
 
