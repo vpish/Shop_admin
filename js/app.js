@@ -5,11 +5,13 @@
 		$locationProvider.html5Mode({enabled: true, requireBase: false});
 		$routeProvider
 			.when('/', {templateUrl: '/main.html'})
-			.when('/customers', {templateUrl: '/customers.html'})
+			.when('/customers', {templateUrl: '/customers.html', controller: 'CustomersController',controllerAs: 'customers'})
 			.when('/products', {templateUrl: '/products.html', controller: 'ProductsController',controllerAs: 'products'})
 			.when('/shoppingcart', {templateUrl: '/shoppingcart.html'})
 			.when('/contacts', {templateUrl: '/contacts.html'});
 	}]);
+
+// ------- AppController -----------
 
 	app.controller('AppController',['$location', function($location){
 		this.currentMenu='main';
@@ -23,7 +25,85 @@
 	}; 
 	}]);
 		
+// ------- CustomersController -----------
+
+	app.controller('CustomersController',['$location', function($location){
+		
+		this.newCustomer = {firstName: undefined , secondName: undefined};
+		
+		this.customersList = [
+		{id:1, firstName: 'Volodymyr' , secondName : 'Pish',  numberOfProducts: 8, cheque: 1230, status: 'active'},
+		{id:2, firstName: 'Stepan' , secondName : 'Sobaka',  numberOfProducts: 5, cheque: 840, status: 'active'},
+		{id:3, firstName: 'Oleg' , secondName : 'Kaban',  numberOfProducts: 0, cheque: 0, status: 'active'},
+		{id:4, firstName: 'Roman' , secondName : 'Koza',  numberOfProducts: 2, cheque: 55, status: 'active'},
+		{id:5, firstName: 'Danylo' , secondName : 'Tygr',  numberOfProducts: 12, cheque: 3410, status: 'active'},
+		{id:6, firstName: 'Ivan' , secondName : 'Slon',  numberOfProducts: 4, cheque: 1980, status: 'active'},
+		];	
+		
+		this.nextId = 7;	
+		this.currentlyEditable = undefined;	
+		this.editableBackup = {};
+		
+		this.clearNewCustomer = function () {
+		  this.newCustomer = {firstName: undefined , secondName: undefined};
+		};
+		
+		this.add = function  () {
+		  this.customersList.push({
+		  	id: this.nextId,
+		  	firstName: this.newCustomer.firstName,
+		  	secondName: this.newCustomer.secondName,
+		  	numberOfProducts: 0,
+		  	cheque: 0,
+		  	status: 'active',
+		  });
+		  this.clearNewCustomer();
+		  this.nextId++;
+		};
+		
+		this.save = function  (customer) {
+			customer.editable = !customer.editable
+		  	this.currentlyEditable = undefined;
+		}
+		
+		this.edit = function  (customer) {
+			this.cancelEdit(this.currentlyEditable);
+			this.currentlyEditable = customer;
+			this.editableBackup = {
+				firstName : customer.firstName,
+				secondName : customer.secondName,
+				};
+			customer.editable = !customer.editable;
+		};
+		
+		this.cancelEdit = function  (customer) {
+			if (!customer) {
+				return;
+			};
+			customer.firstName = this.editableBackup.firstName;
+			customer.secondName = this.editableBackup.secondName;
+			customer.editable = !customer.editable;
+			this.editableBackup = {};
+			this.currentlyEditable = undefined;
+		};
+		
+		this.remove = function (id) {
+		  for (var i=0; i<this.customersList.length; i++){
+				if (this.customersList[i].id===id){
+					 this.customersList[i].status = 'removed';
+					 break;
+				}
+			}
+		};
+				
+		
+	}]);
+		
+			
+// ------- ProductsController -----------
+		
 	app.controller('ProductsController',['$location', function($location){
+		
 		this.categories =[
 			{id:1, name: 'Arts', icon: 'picture'},
 			{id:2, name: 'Books', icon: 'book'},
@@ -104,7 +184,6 @@
 			product.editable = !product.editable;
 			this.editableBackup = {};
 			this.currentlyEditable = undefined;
-			
 		};
 		
 		this.remove = function (id) {
@@ -115,12 +194,10 @@
 				}
 			}
 		};
-		
-		
-		
-		
+				
 		
 	}]);
 
+// ---------------------
 
 })();
