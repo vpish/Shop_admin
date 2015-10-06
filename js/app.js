@@ -7,7 +7,7 @@
 			.when('/', {templateUrl: '/main.html'})
 			.when('/customers', {templateUrl: '/customers.html', controller: 'CustomersController',controllerAs: 'customers'})
 			.when('/products', {templateUrl: '/products.html', controller: 'ProductsController',controllerAs: 'products'})
-			.when('/shoppingcart', {templateUrl: '/shoppingcart.html'})
+			.when('/shoppingcart', {templateUrl: '/shoppingcart.html', controller: 'ShoppingCartsController',controllerAs: 'shoppingcart'})
 			.when('/contacts', {templateUrl: '/contacts.html'});
 	}]);
 
@@ -23,6 +23,133 @@
 			else if (path === '/contacts') {this.currentMenu='contacts';}
 			else if (path === '/shoppingcart') {this.currentMenu='shoppingcart';}	
 	}; 
+	}]);
+	
+// ------- ShoppingCartsController -----------
+		app.controller('ShoppingCartsController',['$location', function($location){
+	
+		this.newPurchase = {product: 1, category : 5,  price: 2, amount: undefined};
+		
+		this.clearNewPurchase = function () {
+		  this.newPurchase = {product: 1, category : 5,  price: 2, amount: undefined};
+		};
+		
+		this.categoryList =[
+			{id:1, name: 'Arts', icon: 'picture'},
+			{id:2, name: 'Books', icon: 'book'},
+			{id:3, name: 'Clothes', icon: 'tags'},
+			{id:4, name: 'Electronics', icon: 'phone'},
+			{id:5, name: 'Food', icon: 'apple'},
+			{id:6, name: 'Home', icon: 'home'},
+			{id:7, name: 'Software', icon: 'cd'},
+			{id:8, name: 'Tools', icon: 'wrench'},
+			{id:9, name: 'Toys', icon: 'knight'},
+		]; 
+		
+		this.productList= [
+			{id:1, name: 'Lime' ,category:5, price: 2, status: 'active'},
+			{id:2, name: 'Table' ,category:6, price: 38, status: 'active'},
+			{id:3, name: 'Nikon D3200' ,category:4, price: 350, status: 'active'},
+			{id:4, name: 'Sony Xperia' ,category:4, price: 280, status: 'active'},
+			{id:5, name: 'Photoshop CS9' ,category:7, price: 99, status: 'active'},
+		];	
+			
+		this.purchasesList = [
+			{id:1, product: 4 , category : 4,  price: 280, amount: 2 },
+			{id:2, product: 3 , category : 4,  price: 350, amount: 1},
+			{id:3, product: 1 , category : 5,  price: 2, amount: 30},
+		];	
+		
+		this.nextId = 4;	
+		this.currentlyEditable = undefined;	
+		this.editableBackup = {};
+	
+		this.category = function(id){
+			for (var i=0; i<this.categoryList.length; i++){
+				if (this.categoryList[i].id===id){
+					return this.categoryList[i];
+				}
+			}
+		}; 
+		
+		this.product = function(id){
+			for (var i=0; i<this.productList.length; i++){
+				if (this.productList[i].id===id){
+					return this.productList[i];
+				}
+			}
+		}; 
+		
+		this.setProduct = function(purchase,product) {
+		  purchase.product = product.id;
+		  purchase.category = product.category;
+		  purchase.price = product.price;
+		  
+		};
+		
+		this.add = function  () {
+		  this.purchasesList.push({
+		  	id: this.nextId,
+		  	product: this.newPurchase.product,
+		  	category: this.newPurchase.category,
+		  	price: this.newPurchase.price,
+		  	amount:this.newPurchase.amount,
+		  });
+		  this.clearNewPurchase();
+		  this.nextId++;
+		 };
+				 
+		this.calcAltogether = function  () {
+		  this.altogether = 0;
+		   for (var i=0; i<this.purchasesList.length; i++){
+				this.altogether = this.altogether + (this.purchasesList[i].price * this.purchasesList[i].amount);			
+				}
+				return this.altogether;
+			};
+		
+		this.save = function  (purchasedItem) {
+			purchasedItem.editable = !purchasedItem.editable
+		  	this.currentlyEditable = undefined;
+		  	
+		}
+		
+		this.edit = function  (purchasedItem) {
+			this.cancelEdit(this.currentlyEditable);
+			this.currentlyEditable = purchasedItem;
+			this.editableBackup = {
+				product : purchasedItem.product,
+				category:purchasedItem.category,
+				price: purchasedItem.price,
+				amount : purchasedItem.amount,
+				};
+			purchasedItem.editable = !purchasedItem.editable;
+		};
+		
+		this.cancelEdit = function  (purchasedItem) {
+			if (!purchasedItem) {
+				return;
+			};
+			purchasedItem.product = this.editableBackup.product;
+			purchasedItem.category = this.editableBackup.category;
+			purchasedItem.price = this.editableBackup.price;
+			purchasedItem.amount = this.editableBackup.amount;
+			purchasedItem.editable = !purchasedItem.editable;
+			this.editableBackup = {};
+			this.currentlyEditable = undefined;
+		};
+		
+		this.remove = function (id) {
+		  for (var i=0; i<this.purchasesList.length; i++){
+				if (this.purchasesList[i].id===id){
+					 this.purchasesList.splice(i,1);
+					 break;
+				}
+			}
+		};	
+		
+		
+		
+		
 	}]);
 		
 // ------- CustomersController -----------
