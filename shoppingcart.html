@@ -1,10 +1,10 @@
 <div class="page-header">
-	<h3><span class="glyphicon glyphicon-briefcase "></span> Shopping Cart: <small> V.P.</small></h3>
+	<h3><span class="glyphicon glyphicon-briefcase "></span> Shopping Cart: <small> {{shoppingcart.customer.firstName}} {{shoppingcart.customer.secondName}}</small></h3>
 </div>
 
 <div class="panel panel-default">
 	<div class="panel-body">
-		<form name="AddNewPurchase" class="form-inline" ng-submit=" AddNewPurchase.$valid && shoppingcart.add()" novalidate>
+		<form name="AddNewPurchase" class="form-inline" ng-submit=" AddNewPurchase.$valid && shoppingcart.add()" ng-hide="shoppingcart.customer.status=='removed'" novalidate>
 			<div class="form-group">
 			<h5><b>Product:</b></h5>
 			</div>
@@ -16,7 +16,7 @@
 					</button>
 					<ul class="dropdown-menu" aria-labelledby="product_category">
 						<li ng-repeat="prod in shoppingcart.productList track by prod.id">
-							<a href="#" ng-click="shoppingcart.setProduct(shoppingcart.newPurchase,prod)" >
+							<a href="#" ng-show="prod.status=='active'" ng-click="shoppingcart.setProduct(shoppingcart.newPurchase,prod)" >
 								{{prod.name}}
 							</a>
 						</li>
@@ -25,32 +25,36 @@
 			</div>
 			<div class="form-group">
 				<b>Category: </b> 
-				<span class=" glyphicon glyphicon-{{shoppingcart.category(shoppingcart.newPurchase.category).icon }}"> </span> 
-				{{shoppingcart.category(shoppingcart.newPurchase.category).name }}
+				<span class=" glyphicon glyphicon-{{shoppingcart.products.categoryOf(shoppingcart.newPurchase.product).icon }}"> </span> 
+				{{shoppingcart.products.categoryOf(shoppingcart.newPurchase.product).name }}
 			</div>
 			<div class="form-group">
-				<h5><b>Price:</b> {{shoppingcart.newPurchase.price | currency }}</h5>
+				<h5><b>Price:</b> {{shoppingcart.product(shoppingcart.newPurchase.product).price | currency }}</h5>
 			</div>
 
 			<div class="input-group">
 				<input type="number" ng-model="shoppingcart.newPurchase.amount" class="form-control" id="Amount" placeholder="Amount" required>
 			</div>
 			<div class="form-group" >
-				<h5><b>Total:  </b> {{shoppingcart.newPurchase.price * shoppingcart.newPurchase.amount | currency }}</h5>
+				<h5><b>Total:  </b> {{shoppingcart.product(shoppingcart.newPurchase.product).price * shoppingcart.newPurchase.amount | currency }}</h5>
 			</div>
 
 			<button type="submit" class="btn btn-default">
 				<span class="glyphicon glyphicon-plus"></span> Add
 			</button>
-
+			
 		</form>
+		<div class="form-group" ng-show="shoppingcart.customer.status=='removed'">
+				<h4><b><font color="red">User has been removed! </font></b> </h4>
+			</div>
+		
 	</div>
 </div>
 
 <table class="table table-hover">
 	<thead>
 		<tr>
-			<th>id</th>
+			<th>№</th>
 			<th>Product</th>
 			<th>Category</th>
 			<th>Price</th>
@@ -60,8 +64,8 @@
 		</tr>
 	</thead>
 	<tbody>
-		<tr ng-repeat="purchasedItem in shoppingcart.purchasesList track by purchasedItem.id">
-			<td>{{purchasedItem.id}}</td>
+		<tr ng-repeat="purchasedItem in shoppingcart.purchasesList track by $index">
+			<td>{{$index + 1}}</td>
 			<td>
 				<span ng-hide="purchasedItem.editable">
 					{{shoppingcart.product(purchasedItem.product).name}}
@@ -73,30 +77,30 @@
 					</button>
 					<ul class="dropdown-menu" aria-labelledby="product_category">
 						<li ng-repeat="prod in shoppingcart.productList track by prod.id">
-							<a href="#" ng-click="shoppingcart.setProduct(purchasedItem,prod)" >
-								{{prod.name}}
+							<a href="#" ng-show="prod.status=='active'" ng-click="shoppingcart.setProduct(purchasedItem,prod)" >								
+								{{prod.name}}												
 							</a>
 						</li>
 					</ul>
 				</div>
 			</td>
 			<td>
-				<span class="glyphicon glyphicon-{{shoppingcart.category(purchasedItem.category).icon}}"></span>
-				{{shoppingcart.category(purchasedItem.category).name}}
+				<span class="glyphicon glyphicon-{{shoppingcart.products.categoryOf(purchasedItem.product).icon}}"></span>
+				{{shoppingcart.products.categoryOf(purchasedItem.product).name}}
 			</td>
-			<td>{{purchasedItem.price | currency}}</td>
+			<td>{{shoppingcart.product(purchasedItem.product).price | currency}}</td>
 			<td>
 				<form name="editPurchasedItemAmount" novalidate>
 				  <span ng-hide="purchasedItem.editable">{{purchasedItem.amount}}</span>
 				  <input type="number" ng-model = "purchasedItem.amount" ng-show="purchasedItem.editable" class="form-control input-sm" required>
 				</form>
 			</td>
-			<td>{{purchasedItem.price * purchasedItem.amount | currency }}</td>
+			<td>{{shoppingcart.product(purchasedItem.product).price * purchasedItem.amount | currency }}</td>
 			<td>
-				<button ng-click="shoppingcart.edit(purchasedItem)" ng-hide="purchasedItem.editable" class="btn btn-default btn-xs">
+				<button ng-click="shoppingcart.edit(purchasedItem)" ng-hide="purchasedItem.editable || shoppingcart.customer.status=='removed'" class="btn btn-default btn-xs">
 					<span class="glyphicon glyphicon-pencil"></span> Edit
 				</button>
-				<button ng-click="shoppingcart.remove(purchasedItem.id)" ng-hide="purchasedItem.editable" class="btn btn-default btn-xs">
+				<button ng-click="shoppingcart.remove(purchasedItem.id)" ng-hide="purchasedItem.editable || shoppingcart.customer.status=='removed'" class="btn btn-default btn-xs">
 					<span class="glyphicon glyphicon-trash"></span> Remove
 				</button>
 				<button ng-click="editPurchasedItemAmount.$valid && shoppingcart.save(purchasedItem)" ng-show="purchasedItem.editable" class="btn btn-default btn-sm">
@@ -112,6 +116,6 @@
 
 <div class="panel panel-default">
 	<div class="panel-body">
-		<h4 class="text-right"><b >Altogether:</b> {{shoppingcart.calcAltogether() | currency }} </h4>
+		<h4 class="text-right"><b >Altogether:</b> {{shoppingcart.calcAltogether(shoppingcart.customer) | currency }} </h4>
 	</div>
 </div>

@@ -30,7 +30,7 @@
 	</thead>
 	<tbody>
 		<tr ng-repeat="customer in customers.customersList track by customer.id">
-			<td>{{customer.id}} * {{customer.status}}</td>
+			<td>{{customer.id}}</td>
 			<td>
 				<form name="editFirstname" novalidate>
 				<span ng-hide="customer.editable">{{customer.firstName}}</span>
@@ -44,14 +44,14 @@
 				</form>				 
 			</td>
 			<td>
-				<a href="" ng-click="app.changePath('/shoppingcart')"><span class="glyphicon glyphicon-shopping-cart"></span>{{customer.numberOfProducts}}  products</a>
+				<a href="" ng-click="app.changePath('/shoppingcart/'+ customer.id, customer.id)"><span class="glyphicon glyphicon-shopping-cart"></span>{{customer.cart.length}}  products</a>
 			</td>
-			<td>{{customer.cheque | currency }}</th>
+			<td>{{customers.cheque(customer)| currency }}</th>
 			<td>
 				<button ng-click="customers.edit(customer)" ng-hide="customer.editable || customer.removed" class="btn btn-default btn-xs">
 					<span class="glyphicon glyphicon-pencil"></span> Edit
 				</button>
-				<button ng-click="customers.remove(customer.id); customer.removed = !customer.removed " ng-hide="customer.editable || customer.removed" class="btn btn-default btn-xs">
+				<button ng-click="customers.remove(customer); customer.removed = !customer.removed " ng-hide="customer.editable || customer.removed" class="btn btn-default btn-xs">
 					<span class="glyphicon glyphicon-trash"></span> Remove
 				</button>
 				<button ng-click="editFirstname.$valid && editSecondname.$valid && customers.save(customer)" ng-show="customer.editable" class="btn btn-default btn-sm">
