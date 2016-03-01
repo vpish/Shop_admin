@@ -1,56 +1,75 @@
 <div class="page-header">
-	<h3><span class="glyphicon glyphicon-briefcase "></span> Shopping Cart: <small> {{shoppingcart.customer.firstName}} {{shoppingcart.customer.secondName}}</small></h3>
+<h3><span class="glyphicon glyphicon-briefcase "></span> Shopping Cart: <small> {{shoppingcart.customer.firstName}} {{shoppingcart.customer.secondName}} </small></h3>
+	<ul class="pager">
+		<li class="next">
+			<a href="#" ng-click="app.changePath('/customers')" >Back <span>&larr;</span></a>
+		</li>
+	</ul>
 </div>
-
+			
 <div class="panel panel-default">
 	<div class="panel-body">
-		<form name="AddNewPurchase" class="form-inline" ng-submit=" AddNewPurchase.$valid && shoppingcart.add()" ng-hide="shoppingcart.customer.status=='removed'" novalidate>
+		<form name="AddNewPurchase" class="form-inline" ng-submit=" AddNewPurchase.$valid && shoppingcart.add() " ng-hide="shoppingcart.customer.status=='removed'" novalidate>
 			<div class="form-group">
 			<h5><b>Product:</b></h5>
 			</div>
+			<!-- --------------------------------- -->
 			<div class="form-group">
-				<div class="dropdown">
-					<button class="btn btn-default dropdown-toggle" type="button" id="product" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" required>
-						{{shoppingcart.product(shoppingcart.newPurchase.product).name}}
+				<div class="dropdown" >
+					<button class="btn btn-default dropdown-toggle" type="button" id="product" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >
+				 	<span ng-show="shoppingcart.flag"> {{shoppingcart.product(shoppingcart.newPurchase.product).name}} </span>
+				 	<span ng-hide="shoppingcart.flag"> {{'Select a product'}} </span>
 						<span class="caret"></span>
 					</button>
 					<ul class="dropdown-menu" aria-labelledby="product_category">
 						<li ng-repeat="prod in shoppingcart.productList track by prod.id">
-							<a href="#" ng-show="prod.status=='active'" ng-click="shoppingcart.setProduct(shoppingcart.newPurchase,prod)" >
+							<a href="#" ng-show="prod.status=='active'" ng-click="shoppingcart.setProduct(shoppingcart.newPurchase,prod); shoppingcart.flag=1" >
 								{{prod.name}}
 							</a>
 						</li>
 					</ul>
 				</div>
 			</div>
+			<!-- --------------------------------- -->
 			<div class="form-group">
 				<b>Category: </b> 
-				<span class=" glyphicon glyphicon-{{shoppingcart.products.categoryOf(shoppingcart.newPurchase.product).icon }}"> </span> 
-				{{shoppingcart.products.categoryOf(shoppingcart.newPurchase.product).name }}
+				<span class=" glyphicon glyphicon-{{shoppingcart.products.categoryOf(shoppingcart.newPurchase.product).icon }}" ng-show="shoppingcart.flag"> </span> 
+				<span ng-show="shoppingcart.flag">{{shoppingcart.products.categoryOf(shoppingcart.newPurchase.product).name }}</span> 
+				<span ng-hide="shoppingcart.flag">{{'none'}}</span>
 			</div>
 			<div class="form-group">
-				<h5><b>Price:</b> {{shoppingcart.product(shoppingcart.newPurchase.product).price | currency }}</h5>
+				<h5><b>Price:</b> 
+					<span ng-show="shoppingcart.flag"> {{shoppingcart.product(shoppingcart.newPurchase.product).price | currency }}</span> 
+					<span ng-hide="shoppingcart.flag">{{'0'| currency}}</span>
+				</h5>
 			</div>
 
 			<div class="input-group">
-				<input type="number" ng-model="shoppingcart.newPurchase.amount" class="form-control" id="Amount" placeholder="Amount" required>
+				<input type="number" ng-model="shoppingcart.newPurchase.amount" class="form-control" id="Amount" placeholder="Amount"  required>
+				
 			</div>
 			<div class="form-group" >
-				<h5><b>Total:  </b> {{shoppingcart.product(shoppingcart.newPurchase.product).price * shoppingcart.newPurchase.amount | currency }}</h5>
+				<h5><b>Total:  </b> 
+					<span ng-show="shoppingcart.flag"> {{shoppingcart.product(shoppingcart.newPurchase.product).price * shoppingcart.newPurchase.amount | currency }}</span> 
+					<span ng-hide="shoppingcart.flag">{{'0'| currency}}</span>
+				</h5>
 			</div>
-
-			<button type="submit" class="btn btn-default">
+			
+			<button type="button" class="btn btn-default" disabled="disabled" ng-hide="shoppingcart.flag">
 				<span class="glyphicon glyphicon-plus"></span> Add
 			</button>
-			
+			<button type="submit" class="btn btn-default" ng-show="shoppingcart.flag">
+				<span class="glyphicon glyphicon-plus"></span> Add
+			</button>
+			<!-- --------------------------------- -->
+						
 		</form>
 		<div class="form-group" ng-show="shoppingcart.customer.status=='removed'">
 				<h4><b><font color="red">User has been removed! </font></b> </h4>
 			</div>
-		
-	</div>
+		</div>
 </div>
-
+<!-- --------------------------------- -->
 <table class="table table-hover">
 	<thead>
 		<tr>

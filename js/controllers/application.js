@@ -3,6 +3,7 @@
 
 	app.controller('AppController',['$location', function($location){
 		this.currentMenu='main';
+		this.getDate = new Date();
 		this.changePath = function(path,id){
 			$location.path(path);
 			if (path === '/') {this.currentMenu='main';}

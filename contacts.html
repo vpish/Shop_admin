@@ -23,14 +23,25 @@
 	</div>
 	<div class="panel-body">
 		<div class="form-group">
-			<textarea class="form-control" placeholder="Text input" rows="4"></textarea>
+			<form name="addNewFeedback" novalidate>	
+			<textarea ng-model="feedbacks.newFeedback.text" class="form-control" placeholder="Text input" rows="4" required></textarea>
+			</form>
 		</div>
-		<button type="button" class="btn btn-default btn-lg btn-block">
+		<button ng-click="addNewFeedback.$valid && feedbacks.add()" type="button" class="btn btn-default btn-lg btn-block">
 			<span class="glyphicon glyphicon-envelope"></span> Send
 		</button>
 	</div>
 </div>
+<!-- --------------------------------- -->
 
+<table class="table table-striped">
+	<tbody>
+		<tr ng-repeat="feedback in feedbacks.feedbacksList track by $index">
+			<td><b>{{$index +1 +'.'}}</b> {{ feedback.text}} </td>
+		</tr>
+
+	</tbody>
+</table>
 
 
 		

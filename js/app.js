@@ -8,7 +8,7 @@
 			.when('/customers', {templateUrl: '/customers.html', controller: 'CustomersController',controllerAs: 'customers'})
 			.when('/products', {templateUrl: '/products.html', controller: 'ProductsController',controllerAs: 'products'})
 			.when('/shoppingcart/:customer_id', {templateUrl: '/shoppingcart.html', controller: 'ShoppingCartsController',controllerAs: 'shoppingcart'})
-			.when('/contacts', {templateUrl: '/contacts.html'});
+			.when('/contacts', {templateUrl: '/contacts.html', controller: 'FeedbacksController',controllerAs: 'feedbacks'});
 	}]);
 
 })();

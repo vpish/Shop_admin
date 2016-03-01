@@ -13,9 +13,11 @@
 		<script src="js/controllers/products.js"></script>
 		<script src="js/controllers/customers.js"></script>
 		<script src="js/controllers/shoppingcart.js"></script>
+		<script src="js/controllers/feedbacks.js"></script>
 		<script src="js/services/categories.js"></script>
 		<script src="js/services/products.js"></script>
 		<script src="js/services/customers.js"></script>
+		<script src="js/services/feedbacks.js"></script>
 	</head>
 
 	<body ng-controller="AppController as app">
@@ -54,7 +56,7 @@
 							<a href="#" ng-click="app.changePath('/contacts')"><span class="glyphicon glyphicon-home"></span> Contacts</a>
 						</li>
 						<li >
-							<p class="navbar-text">22.10.2015</p>
+							<p class="navbar-text"><b>{{app.getDate | date:'dd/MM/yyyy'}}</b></p>
 						</li>
 					</ul>
 					

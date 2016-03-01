@@ -8,13 +8,14 @@
 		this.categories =$categories;
 		this.productList= $products.all;	
 		this.products=$products;
+		this.flag = 0;
 		this.product = function(id) {
 		  return $products.byId(id);		  
 		};		 	
 		this.purchasesList = this.customer.cart;	
 
 		this.setProduct = function(purchase,product) {
-		  purchase.product = product.id;		  
+		  purchase.product = product.id;		
 		};		
 		
 		this.newPurchase = {product: this.productList[0].id, amount: undefined};
@@ -31,6 +32,7 @@
 		  	amount:this.newPurchase.amount,
 		  });
 		  this.clearNewPurchase();
+		  this.flag = 0;
 		 };
 		
 		this.remove = function (id) {
